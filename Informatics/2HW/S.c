@@ -16,6 +16,15 @@ void endHtml(FILE *html){
 	fprintf(html, "   <head> \n");
 }
 
+void markComment(int c ,FILE *data){
+
+	if (c == '/'){
+		if ((c = getc(data)) == '/'){
+			printf("comment\n");
+		}
+	}
+}
+
 int main(){
 	int	c;
 	FILE *data,
@@ -24,9 +33,11 @@ int main(){
 	html = fopen("index.html", "w");
 	beginHtml(html);
 	if (data) {
-		while ((c = getc(data)) != EOF)
+		while ((c = getc(data)) != EOF){
+			markComment(c,data);
 			putc(c,html);
-		fclose(data);
+		}
 	}
+	fclose(data);
 	return 0;
 }
