@@ -1,14 +1,14 @@
-<!DOCTYPE HTML>
-</html>
-   <head>
-      <title>Java Syntax</title>
-	<link href="special.css" rel="stylesheet" type="text/css">
-   </head>
-<body>
+<!DOCTYPE HTML> 
+</html> 
+   <head> 
+      <title>Java Syntax</title> 
+	<link href=special.css rel=stylesheet type=text/css> 
+   </head> 
+<body> 
 <pre>
-<span class="comment">//Mike Scsdasott</span>
-<span class="comment">//examples of array manipulations</span>
-String greeting = <span class="text">"Hello world!"</span>;
+//Mike Scsdasott
+//examples of array manipulations
+String greeting = "Hello world!";
 
 public class ArrayExamples
 {	public static void main(String[] args)
@@ -31,10 +31,10 @@ public class ArrayExamples
 	}
 
 
-	<span class="comment">// pre: list != null, list.length > 0</span>
-	<span class="comment">// post: return index of minimum element of array</span>
+	// pre: list != null, list.length > 0
+	// post: return index of minimum element of array
 	public static int findMin(int[] list)
-	{	assert list != null && list.length > 0 : <span class="text">"failed bla bla bla precondition"</span>;
+	{	assert list != null && list.length > 0 : "failed bla bla bla precondition";
 
 		int indexOfMin = 0;
 		for(int i = 1; i < list.length; i++)
@@ -47,14 +47,14 @@ public class ArrayExamples
 	}
 
 	
-	<span class="comment">/*labas*/</span>asdasd/*labas*/ 
-	<span class="comment">/*
+	/*labas*/
+	/*
 	 *pre: list != null, newSize >= 0
 	 *post: nothing. the method does not succeed it resizing the
 	 * argument
-	 */</span>
+	 */
 	public static void badResize(int[] list, int newSize)
-	{	assert list != null && newSize >= 0 : <span class="text">"failed precondition"</span>;
+	{	assert list != null && newSize >= 0 : "failed precondition";
 
 		int[] temp = new int[newSize];
 		int limit = Math.min(list.length, newSize);
@@ -63,19 +63,19 @@ public class ArrayExamples
 		{	temp[i] = list[i];
 		}
 
-		<span class="comment">// uh oh!! Changing pointer, not pointee. This breaks the</span>
-		<span class="comment">// relationship between the parameter and argument</span>
+		// uh oh!! Changing pointer, not pointee. This breaks the
+		// relationship between the parameter and argument
 		list = temp;
 	}
 
 
-	<span class="comment">/*
+	/*
 	 *pre: list != null, newSize >= 0
 	 *post: returns an array of size newSize. Elements from 0 to newSize - 1
 	 *	will be copied into the new array
-	 */</span>
+	 */
 	public static int[] goodResize(int[] list, int newSize)
-	{	assert list != null && newSize >= 0 : <span class="text">"failed precondition"</span>;
+	{	assert list != null && newSize >= 0 : "failed precondition";
 
 		int[] result = new int[newSize];
 		int limit = Math.min(list.length, newSize);
@@ -88,40 +88,40 @@ public class ArrayExamples
 	}
 
 
-	<span class="comment">/*
+	/*
 	 *pre: list != null
 	 *post: prints out the indices and values of all pairs of numbers
 	 *in list such that list[a] + list[b] = target
-	 */</span>
+	 */
 	public static void findAndPrintPairs(int[] list, int target)
-	{	assert list != null : <span class="text">"failed precondition"</span>;
+	{	assert list != null : "failed precondition";
 
 		for(int i = 0; i < list.length; i++)
 		{	for(int j = i + 1; j < list.length; j++)
 			{	if(list[i] + list[j] == target)
-				{	System.out.println(<span class="text">"The two elements at indices "</span> + i + " and " + j
-						+ <span class="text">" are "</span> + list[i] + " and " + list[j] + " add up to " + target);
+				{	System.out.println("The two elements at indices " + i + " and " + j
+						+ " are " + list[i] + " and " + list[j] + " add up to " + target);
 				}
 			}
 		}
 	}
 
 
-	<span class="comment">/*
+	/*
 	 *pre: list != null;
 	 *post: sort the elements of list so that they are in ascending order
-	 */</span>
+	 */
 	public static void bubblesort(int[] list)
 	{
-		assert list != null : <span class="text">"failed precondition"</span>;
+		assert list != null : "failed precondition";
 
 		int temp;
 		boolean changed = true;
 		for(int i = 0; i < list.length && changed; i++)
 		{	changed = false;
 			for(int j = 0; j < list.length - i - 1; j++)
-			{	assert (j > 0) && (j + 1 < list.length) : <span class="text">"loop counter j "</span> + j +
-					<span class="text">"is out of bounds."</span>;
+			{	assert (j > 0) && (j + 1 < list.length) : "loop counter j " + j +
+					"is out of bounds.";
 				if(list[j] > list[j+1])
 				{	changed = true;
 					temp = list[j + 1];
@@ -137,14 +137,14 @@ public class ArrayExamples
 
 	public static void showList(int[] list)
 	{	for(int i = 0; i < list.length; i++)
-			System.out.print( list[i] + <span class="text">" "</span> );
+			System.out.print( list[i] + " " );
 		System.out.println();
 	}
 
-	<span class="comment">/* 	pre: list != null*/</span>
-	<span class="comment">/*
+	/* 	pre: list != null*/
+	/*
 		post: return true if list is sorted in ascedning order, false otherwise
-	*/</span>
+	*/
 	public static boolean isAscending( int[] list )
 	{	boolean ascending = true;
 		int index = 1;
@@ -158,6 +158,3 @@ public class ArrayExamples
 		return ascending;
 	}
 }
-</pre>
-</body>
-</html>
