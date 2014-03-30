@@ -4,10 +4,16 @@ void beginHtml(FILE *html){
 	fprintf(html, "</html> \n");
 	fprintf(html, "   <head> \n");
 	fprintf(html, "      <title>Java Syntax</title> \n");
-	fprintf(html, "	<link href=""special.css"" rel=""stylesheet"" type=""text/css""> \n");
+	fprintf(html, "	<link href=\"special.css\" rel=\"stylesheet\" type=\"text/css\"> \n");
 	fprintf(html, "   </head> \n");
 	fprintf(html, "<body> \n");
 	fprintf(html, "<pre>\n");
+}
+
+void endHtml(FILE *html){
+	fprintf(html, "</pre> \n");
+	fprintf(html, "</body> \n");
+	fprintf(html, "   <head> \n");
 }
 
 int main(){
