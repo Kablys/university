@@ -32,7 +32,7 @@ void copyArray(int n,int to[],int from[]){
 	for (i = 0; i < n; i++){
 		to[i] = from[i];
 	}
-}//copyArray
+}//copyArrayz
 
 int absoluteValue(int value){
 	if (value < 0)	//makes difference into absolute value
@@ -40,7 +40,21 @@ int absoluteValue(int value){
 	return value;	
 }//absoluteValue
 
-void checkArray(int n,int oneZero[],int start[],int *dif,int resultArray1[],int resultArray2[]){
+void iterateBinArr (int oneZero[]){
+	int i = 0;
+	while(1){
+			if (oneZero[i] == 0){
+				oneZero[i] = 1;
+				break;
+			}
+			else if (oneZero[i] == 1){
+				oneZero[i] = 0;
+				i += 1;
+			}
+	}
+}	
+
+void checkArray(int n, int oneZero[], int start[], int *dif, int resultArray1[], int resultArray2[]){
 	int difference = 0,
 		*interim1 = calloc(n,sizeof(int)),
 		*interim2 = calloc(n,sizeof(int));
@@ -58,8 +72,11 @@ void checkArray(int n,int oneZero[],int start[],int *dif,int resultArray1[],int 
 			k++;	
 		}
 	}
+
 	//assigns difference of two arrays and makes it absolute value
-	difference = absoluteValue(sumArray(n,interim1) - sumArray(n,interim2));
+	difference = sumArray(n,interim1) - sumArray(n,interim2);
+	difference = absoluteValue(difference);
+
 	if (difference < *dif){	//checks new difference with old one
 		*dif = difference;	//if smaller assigns smaller value
 		copyArray(n,resultArray1,interim1);		//and new arrays
@@ -82,38 +99,99 @@ void printArray(int z,int arr[]){	//prints int array(excluding 0)
 	printf("]\n");
 }//printArray
 
+void printResults(int n, int dif, int resultArray1[], int resultArray2[]){
+	printf("The smallest difference was %d and arrays are\n",dif);
+	printArray(n, resultArray1);
+	printArray(n, resultArray2);
+
+}
+
+void drawMenu(){
+	printf("Input Action \n");
+	printf("1     Enter size of array\n");
+	printf("2     Enter integers fot array\n");
+	printf("3     Split array\n");
+	printf("4     Print results\n");
+	printf("5     Exit program\n");
+	printf("Your input:\n");
+}
+int nextStep (int current,int last){
+	if (last < current-1){
+		printf("You missed step %d\n",last+1);
+		return 0;
+	}
+	return 1;
+}
 int main(){
 	int n = 0,			//size of arrays
 		i = 0,
-		dif = INT_MAX;	//for searching smalles difference
-	printf("Size of array(number between %d-%d):",MIN,MAX);
-	n=checkInput(MIN,MAX);
-	int *data = calloc(n,sizeof(int)), 		//array for input data
-		*oneZero = calloc(n,sizeof(int)),	//holds binary numbers for comparing arrays
-		*resultArray1 = calloc(n,sizeof(int)),	//holds first result array
-		*resultArray2 = calloc(n,sizeof(int));	//holds first result array
-	printf("Input numbers\n");
-	for (i = 0; i < n; i++){				//input for data array
-		data[i] = checkInput(INT_MIN,INT_MAX);
-	};
-	while (oneZero[n-1]==0){				//creates binary number represented as array
-		i = 0;
-		while(1){
-			if (oneZero[i] == 0){
-				oneZero[i] = 1;
-				break;
-			}
-			else if (oneZero[i] == 1){
-				oneZero[i] = 0;
-				i += 1;
-			}
-		};
-		checkArray(n,oneZero,data,&dif,resultArray1,resultArray2);
-	};
-	printf("The smallest difference was %d and arrays are\n",dif);
-	printArray(n,resultArray1);
-	printArray(n,resultArray2);
+		dif = INT_MAX,	//for searching smalles difference
+		step = 0,
+		exit = 1,
+		navigMenu = 0,
+		*data = NULL, 		//array for input data
+		*oneZero = NULL,		//holds binary numbers for comparing arrays
+		*resultArray1 = NULL,	//holds first result array
+		*resultArray2 = NULL;
+
+	while (exit){
+		drawMenu();
+		switch (navigMenu = checkInput(1, 5)){
+
+		case 1://Enter size of array
+			printf("Size of array(number between %d-%d):",MIN,MAX);
+			n=checkInput(MIN, MAX);
+			int *data = calloc(n, sizeof(int)), 		//array for input data
+				*oneZero = calloc(n, sizeof(int)),		//holds binary numbers for comparing arrays
+				*resultArray1 = calloc(n, sizeof(int)),	//holds first result array
+				*resultArray2 = calloc(n, sizeof(int));	//holds second result array
+			step = 1;
+			break;
+
+		case 2://Enter integers fot array
+			if ((nextStep(navigMenu,step)) == 0){break;};
+			printf("Input %d numbers\n",n);
+			for (i = 0; i < n; i++){				//input for data array
+				data[i] = checkInput(INT_MIN, INT_MAX);
+			};
+			step = 2;
+			break;
+
+		case 3://Split array
+			if ((nextStep(navigMenu,step)) == 0){break;};
+			while (oneZero[n-1] == 0){				//creates binary number represented as array
+				iterateBinArr(oneZero);
+				checkArray(n, oneZero, data, &dif, resultArray1, resultArray2);
+			};
+			step = 3;
+			break;
+
+		case 4://Print results
+			if ((nextStep(navigMenu,step)) == 0){break;};
+			printResults(n, dif, resultArray1, resultArray2);
+			break;
+
+		case 5://Exit program
+			printf("Good Bye\n");
+			exit = 0;
+			break;
+
+		default:
+			printf("error %d %d", navigMenu, exit);
+			break;
+		}
+	}
 	free(data);
 	free(oneZero);
+	free(resultArray1);
+	free(resultArray2);
 	return 0;
+	
+
+	
+
+
+	
+
+
 }

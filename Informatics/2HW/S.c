@@ -17,7 +17,6 @@ void endHtml(FILE *html){
 }
 
 void markComment(int c ,FILE *data){
-
 	if (c == '/'){
 		if ((c = getc(data)) == '/'){
 			printf("comment\n");
