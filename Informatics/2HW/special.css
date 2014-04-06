@@ -1,4 +1,4 @@
 body {font-family: monospace;background-color:black;color: white;}
 .comment {color: green;}
 .text{color: grey;}
-.key{color: blue;}
+.reserved{color: blue;}

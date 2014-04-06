@@ -39,7 +39,9 @@ public class ArrayExamples
 	}
 
 	
-	/*labas*/
+	/*labas*/asdghj/*diena*/darkaskas//viso gero
+	///asldkfj;sdf/sadlkfjasdf//////aslkdfjlasdf///////askdjflasdf
+	//
 	/*
 	 *pre: list != null, newSize >= 0
 	 *post: nothing. the method does not succeed it resizing the
