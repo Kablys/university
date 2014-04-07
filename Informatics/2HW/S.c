@@ -16,27 +16,32 @@ void endHtml(FILE *html){
 	fprintf(html, "<html> \n");
 }
 
-/*jvoid markComment(int c ,FILE *data){
-	if (c == '/'){
-		if ((c = getc(data)) == '/'){
-			printf("comment\n");
-		}
-	}
-}*/
 
-int main(){
-	int	c, i;
+int main( int argc, char *argv[] ){
+	int	c;
 	FILE *data,
 		 *html;
 
 	const char *strings[] = { "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "default", "do", "double", "else", "enum", "extends", "final", "finally", "float", "for", "goto", "if", "implements", "import", "instanceof", "int", "interface", "long", "native", "new", "package", "private", "protected", "public", "return", "short", "static", "strictfp", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "try", "void", "volatile", "while"};
-
+	if( argc == 3 ){
+		printf("The argument supplied are %s%s\n", argv[1],argv[2]);
+		data = fopen(argv[1], "r");
+		html = fopen(argv[2], "w");
+	}
+	else if( argc > 3 ){
+		printf("Too many arguments supplied, expected two.\n");
+		printf("Using default: Code.java, index.html.\n");
+		data = fopen("Code.java", "r");
+		html = fopen("index.html", "w");
+	}
+	else{
+    	printf("Two argument expected.\n");
+		printf("Using default: Code.java, index.html.\n");
+		data = fopen("Code.java", "r");
+		html = fopen("index.html", "w");
+	}
 	data = fopen("Code.java", "r");
 	html = fopen("index.html", "w");
-					for (i = 0; i < 50; i++){
-						fprintf(html, "%s\n",strings[i]);//opening and closing tag
-					}
-	beginHtml(html);
 	if (data) {
 		while ((c = getc(data)) != EOF){
 			if (c == '/'){		//marking comments
