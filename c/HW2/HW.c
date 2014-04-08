@@ -107,13 +107,14 @@ void printResults(int n, int dif, int resultArray1[], int resultArray2[]){
 }
 
 void drawMenu(){
+	printf("\n");
 	printf("Input Action \n");
 	printf("1     Enter size of array\n");
 	printf("2     Enter integers fot array\n");
 	printf("3     Split array\n");
 	printf("4     Print results\n");
 	printf("5     Exit program\n");
-	printf("Your input:\n");
+	printf("Your input:");
 }
 int nextStep (int current,int last){
 	if (last < current-1){
@@ -129,10 +130,10 @@ int main(){
 		step = 0,
 		exit = 1,
 		navigMenu = 0,
-		*data = NULL, 		//array for input data
-		*oneZero = NULL,		//holds binary numbers for comparing arrays
-		*resultArray1 = NULL,	//holds first result array
-		*resultArray2 = NULL;
+		*data = malloc(1 * sizeof (*data)), 		//array for input data
+		*oneZero = malloc(1 * sizeof (*oneZero)),		//holds binary numbers for comparing arrays
+		*resultArray1 = malloc(1 * sizeof (*resultArray1)),	//holds first result array
+		*resultArray2 = malloc(1 * sizeof (*resultArray2));
 
 	while (exit){
 		drawMenu();
@@ -141,10 +142,10 @@ int main(){
 		case 1://Enter size of array
 			printf("Size of array(number between %d-%d):",MIN,MAX);
 			n=checkInput(MIN, MAX);
-			int *data = calloc(n, sizeof(int)), 		//array for input data
-				*oneZero = calloc(n, sizeof(int)),		//holds binary numbers for comparing arrays
-				*resultArray1 = calloc(n, sizeof(int)),	//holds first result array
-				*resultArray2 = calloc(n, sizeof(int));	//holds second result array
+			data = realloc(data, n*sizeof(int)), 		//array for input data
+			oneZero = realloc(oneZero, n*sizeof(int)),		//holds binary numbers for comparing arrays
+			resultArray1 = realloc(resultArray1, n * sizeof(int)),	//holds first result array
+			resultArray2 = realloc(resultArray2, n * sizeof(int));	//holds second result array
 			step = 1;
 			break;
 

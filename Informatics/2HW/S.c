@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 void beginHtml(FILE *html){
 	fprintf(html, "<!DOCTYPE HTML> \n");
 	fprintf(html, "</html> \n");
@@ -16,6 +17,78 @@ void endHtml(FILE *html){
 	fprintf(html, "<html> \n");
 }
 
+
+void markString(FILE *data, FILE *html, char c){
+	fprintf(html, "<span class=\"text\">%c",c);//opening tag
+	while((c = getc(data)) != EOF){
+		if(c == '\"'){
+			putc(c,html);
+			fprintf(html, "</span>");//closing tag
+			break;	
+		}
+		putc(c,html);
+	}
+}
+
+void markComment(FILE *data, FILE *html, char c){
+	int k;
+	k = c;
+	c = getc(data);
+	if(c == '/'){		//inline comment
+		fprintf(html, "<span class=\"comment\">%c%c",k,c);//opening tag
+		while ((c = getc(data)) != '\n'){
+			putc(c,html);
+		}
+		fprintf(html, "</span>");//closing tag
+	}
+	else if(c == '*'){//block comment
+		fprintf(html, "<span class=\"comment\">%c%c",k,c);//opening tag
+		while((c = getc(data)) != EOF){
+			if(c == '*'){
+				putc(c,html);
+				c = getc(data);
+				if(c == '/'){
+					putc(c,html);
+					fprintf(html, "</span>");//closing tag
+					break;	
+				}
+				continue;
+			}
+			putc(c,html);
+		}
+
+	}
+	else{//if only one /
+		fprintf(html, "%c%c",k,c);
+	}
+}
+
+void markReserved(FILE *data, FILE *html, char c){
+	char interim[13];//longest rerved JAVA word is synchronized(12 characters)
+	int i = 0;
+	interim[0] = c;
+	c = getc(data);
+	while (((c >= 97) && (c <= 122)) || (i > 11)){
+		i++;
+		interim[i] = c;
+		interim[i + 1] = '\0';
+		c = getc(data);
+	}
+	char notfound = 1;
+	if((c < 48) || ((c > 57) && (c < 65)) || ((c > 90) && (c < 97)) || (c > 122)){// if there is space after string
+		for (i = 0; i < 50; i++){
+			if (strcmp(interim,strings[i]) == 0){
+				fprintf(html, "<span class=\"reserved\">%s</span>",interim);//opening and closing tag
+				notfound = 0;
+				break;	
+			}
+		}
+	}
+	if (notfound){
+		fprintf(html, "%s",interim);//opening and closing tag
+	}
+	putc(c,html);
+}
 
 int main( int argc, char *argv[] ){
 	int	c;
@@ -40,77 +113,26 @@ int main( int argc, char *argv[] ){
 		data = fopen("Code.java", "r");
 		html = fopen("index.html", "w");
 	}
-	data = fopen("Code.java", "r");
-	html = fopen("index.html", "w");
+	beginHtml(html);
 	if (data) {
 		while ((c = getc(data)) != EOF){
-			if (c == '/'){		//marking comments
-				int k;
-				k = c;
-				c = getc(data);
-				if(c == '/'){		//inline comment
-					fprintf(html, "<span class=\"comment\">%c%c",k,c);//opening tag
-					while ((c = getc(data)) != '\n'){
-						putc(c,html);
-					}
-					fprintf(html, "</span>");//closing tag
-				}
-				else if(c == '*'){//block comment
-					fprintf(html, "<span class=\"comment\">%c%c",k,c);//opening tag
-					while((c = getc(data)) != EOF){
-						if(c == '*'){
-							putc(c,html);
-							c = getc(data);
-							if(c == '/'){
-								putc(c,html);
-								fprintf(html, "</span>");//closing tag
-								break;	
-							}
-							continue;
-						}
-						putc(c,html);
-					}
 
-				}
-				else{//if only one /
-					fprintf(html, "%c%c",k,c);
-				}
+			if (c == '/'){		//marking comments
+				markComment(data, html, c);
 				continue;
 			}
 			
 			if (c == '\"'){		//marking text
-				fprintf(html, "<span class=\"text\">%c",c);//opening tag
-				while((c = getc(data)) != EOF){
-					if(c == '\"'){
-						putc(c,html);
-						fprintf(html, "</span>");//closing tag
-						break;	
-					}
-					putc(c,html);
-				}
+				markString(data, html, c);
 				continue;
 			}
 
 			if ((c >= 97) && (c <= 122)){//marking reserved words
-				char interim[12];//longest rerved JAVA word is synchronized(12 characters)
-				int i = 0;
-				interim[0] = c;
-				c = getc(data);
-				while (((c >= 97) && (c <= 122)) || (i > 11)){
-					i++;
-					interim[i] = c;
-					interim[i + 1] = '\0';
-					c = getc(data);
-				}
-				for (i = 0; i < 50; i++){
-					if (interim == strings[i]){
-						fprintf(html, "<span class=\"reserved\">%s</span>",interim);//opening and closing tag
-						break;	
-					}
-				
-				}
-				fprintf(html, "%s",interim);//opening and closing tag
-				putc(c,html);
+				markReserved(data, html, c);		
+				continue;
+			}
+			if (c){//marking reserved words
+				markReserved(data, html, c);		
 				continue;
 			}
 

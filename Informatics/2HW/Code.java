@@ -35,7 +35,7 @@ public class ArrayExamples
 			}
 		}
 
-		return indexOfMin;
+		return indexOfMin; Return
 	}
 
 	
@@ -110,7 +110,7 @@ public class ArrayExamples
 		assert list != null : "failed precondition";
 
 		int temp;
-		boolean changed = true;
+		boolean changed = false;
 		for(int i = 0; i < list.length && changed; i++)
 		{	changed = false;
 			for(int j = 0; j < list.length - i - 1; j++)

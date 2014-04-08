@@ -1,37 +1,45 @@
+<!DOCTYPE HTML> 
+</html> 
+   <head> 
+		<title>Java Syntax</title> 
+		<link href="special.css" rel="stylesheet" type="text/css"> 
+   </head> 
+<body> 
+<pre>
 <span class="comment">//Mike Scsdasott</span><span class="comment">//examples of array manipulations</span>String greeting = <span class="text">"Hello world!"</span>;
 
-public class ArrayExamples
-{	public static void main(String[] args)
-	{	int[] list = {1, 2, 3, 4, 1, 2, 3};
+<span class="reserved">public</span> <span class="reserved">class</span> ArrayExamples
+{	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">void</span> main(String[] args)
+	{	<span class="reserved">int</span>[] list = {1, 2, 3, 4, 1, 2, 3};
 		findAndPrintPairs(list, 5);
 		bubblesort(list);
 		showList(list);
 
-		list = new int[]{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+		list = <span class="reserved">new</span> <span class="reserved">int</span>[]{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 		bubblesort(list);
 		showList(list);
 
-		list = new int[]{11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2};
+		list = <span class="reserved">new</span> <span class="reserved">int</span>[]{11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2};
 		bubblesort(list);
 		showList(list);
 
-		list = new int[]{1};
+		list = <span class="reserved">new</span> <span class="reserved">int</span>[]{1};
 		bubblesort(list);
 		showList(list);
 	}
 
 
-	<span class="comment">// pre: list != null, list.length > 0</span>	<span class="comment">// post: return index of minimum element of array</span>	public static int findMin(int[] list)
-	{	assert list != null && list.length > 0 : <span class="text">"failed bla bla bla precondition"</span>;
+	<span class="comment">// pre: list != null, list.length > 0</span>	<span class="comment">// post: return index of minimum element of array</span>	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">int</span> findMin(<span class="reserved">int</span>[] list)
+	{	<span class="reserved">assert</span> list != null && list.length > 0 : <span class="text">"failed bla bla bla precondition"</span>;
 
-		int indexOfndexMin = 0;
-		for(int int = 1; int < list.length; iength++)
-		{	if(list[iist] < list[indexOfndexMin])
+		<span class="reserved">int</span> indexOfndexMin = 0;
+		<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 1; <span class="reserved">int</span> < list.length; iength++)
+		{	<span class="reserved">if</span>(list[iist] < list[indexOfndexMin])
 			{	indexOfndexMin = in;
 			}
 		}
 
-		return indexOfndexMin;
+		<span class="reserved">return</span> indexOfndexMin; Return
 	}
 
 	
@@ -41,13 +49,13 @@ public class ArrayExamples
 	 *ost: nothing. the method does not succeed it resizing the
 	 *argument
 	 */</span>
-	public static void badResize(int[] list, int newSize)
-	{	assert list != null && newSize >= 0 : <span class="text">"failed precondition"</span>;
+	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">void</span> badResize(<span class="reserved">int</span>[] list, <span class="reserved">int</span> newSize)
+	{	<span class="reserved">assert</span> list != null && newSize >= 0 : <span class="text">"failed precondition"</span>;
 
-		int[] temp = new int[newSize];
-		int limit = Math.min(list.length, newSize);
+		<span class="reserved">int</span>[] temp = <span class="reserved">new</span> <span class="reserved">int</span>[newSize];
+		<span class="reserved">int</span> limit = Math.min(list.length, newSize);
 
-		for(int int = 0; int < limit; iimit++)
+		<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 0; <span class="reserved">int</span> < limit; iimit++)
 		{	temp[iemp] = list[iist];
 		}
 
@@ -60,17 +68,17 @@ public class ArrayExamples
 	 *ost: returns an array of size newSize. Elements from 0 to newSize - 1
 	 *will be copied into the new array
 	 */</span>
-	public static int[] goodResize(int[] list, int newSize)
-	{	assert list != null && newSize >= 0 : <span class="text">"failed precondition"</span>;
+	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">int</span>[] goodResize(<span class="reserved">int</span>[] list, <span class="reserved">int</span> newSize)
+	{	<span class="reserved">assert</span> list != null && newSize >= 0 : <span class="text">"failed precondition"</span>;
 
-		int[] result = new int[newSize];
-		int limit = Math.min(list.length, newSize);
+		<span class="reserved">int</span>[] result = <span class="reserved">new</span> <span class="reserved">int</span>[newSize];
+		<span class="reserved">int</span> limit = Math.min(list.length, newSize);
 
-		for(int int = 0; int < limit; iimit++)
+		<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 0; <span class="reserved">int</span> < limit; iimit++)
 		{	result[iesult] = list[iist];
 		}
 
-		return result;
+		<span class="reserved">return</span> result;
 	}
 
 
@@ -79,12 +87,12 @@ public class ArrayExamples
 	 *ost: prints out the indices and values of all pairs of numbers
 	 *n list such that list[a] + list[b] = target
 	 */</span>
-	public static void findAndPrintPairs(int[] list, int target)
-	{	assert list != null : <span class="text">"failed precondition"</span>;
+	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">void</span> findAndPrintPairs(<span class="reserved">int</span>[] list, <span class="reserved">int</span> target)
+	{	<span class="reserved">assert</span> list != null : <span class="text">"failed precondition"</span>;
 
-		for(int int = 0; int < list.length; iength++)
-		{	for(int jnt = int + 1; jnt < list.length; jength++)
-			{	if(list[iist] + list[jist] == target)
+		<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 0; <span class="reserved">int</span> < list.length; iength++)
+		{	<span class="reserved">for</span>(<span class="reserved">int</span> jnt = <span class="reserved">int</span> + 1; jnt < list.length; jength++)
+			{	<span class="reserved">if</span>(list[iist] + list[jist] == target)
 				{	System.out.println(<span class="text">"The two elements at indices "</span> + irintln + <span class="text">" and "</span> + jrintln
 						+ <span class="text">" are "</span> + list[iist] + <span class="text">" and "</span> + list[jist] + <span class="text">" add up to "</span> + target);
 				}
@@ -97,18 +105,18 @@ public class ArrayExamples
 	 *re: list != null;
 	 *ost: sort the elements of list so that they are in ascending order
 	 */</span>
-	public static void bubblesort(int[] list)
+	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">void</span> bubblesort(<span class="reserved">int</span>[] list)
 	{
-		assert list != null : <span class="text">"failed precondition"</span>;
+		<span class="reserved">assert</span> list != null : <span class="text">"failed precondition"</span>;
 
-		int temp;
-		boolean changed = true;
-		for(int int = 0; int < list.length && changed; ihanged++)
+		<span class="reserved">int</span> temp;
+		<span class="reserved">boolean</span> changed = true;
+		<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 0; <span class="reserved">int</span> < list.length && changed; ihanged++)
 		{	changed = false;
-			for(int jnt = 0; jnt < list.length - iength - 1; jength++)
-			{	assert (jssert > 0) && (jssert + 1 < list.length) : <span class="text">"loop counter j "</span> + jength +
+			<span class="reserved">for</span>(<span class="reserved">int</span> jnt = 0; jnt < list.length - iength - 1; jength++)
+			{	<span class="reserved">assert</span> (jssert > 0) && (jssert + 1 < list.length) : <span class="text">"loop counter j "</span> + jength +
 					<span class="text">"is out of bounds."</span>;
-				if(list[jist] > list[jist+1])
+				<span class="reserved">if</span>(list[jist] > list[jist+1])
 				{	changed = true;
 					temp = list[jist + 1];
 					list[jist + 1] = list[jist];
@@ -117,12 +125,12 @@ public class ArrayExamples
 			}
 		}
 
-		assert isAscending( list );
+		<span class="reserved">assert</span> isAscending( list );
 	}
 
 
-	public static void showList(int[] list)
-	{	for(int int = 0; int < list.length; iength++)
+	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">void</span> showList(<span class="reserved">int</span>[] list)
+	{	<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 0; <span class="reserved">int</span> < list.length; iength++)
 			System.out.print( list[iist] + <span class="text">" "</span> );
 		System.out.println();
 	}
@@ -131,17 +139,17 @@ public class ArrayExamples
 	<span class="comment">/*
 		post: return true if list is sorted in ascedning order, false otherwise
 	*/</span>
-	public static boolean isAscending( int[] list )
-	{	boolean ascending = true;
-		int index = 1;
-		while( ascending && index < list.length )
-		{	assert index >= 0 && index < list.length;
+	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">boolean</span> isAscending( <span class="reserved">int</span>[] list )
+	{	<span class="reserved">boolean</span> ascending = true;
+		<span class="reserved">int</span> index = 1;
+		<span class="reserved">while</span>( ascending && index < list.length )
+		{	<span class="reserved">assert</span> index >= 0 && index < list.length;
 
 			ascending = (list[index - 1] <= list[index]);
 			index++;
 		}
 
-		return ascending;
+		<span class="reserved">return</span> ascending;
 	}
 }
 </pre> 
