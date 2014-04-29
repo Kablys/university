@@ -22,6 +22,21 @@ public class ArrayExamples
 		showList(list);
 	}
 
+	/**
+	* @author Liutauras
+	* @param int i kintamasis
+	*/
+	protected int test(int i) {
+		greeeting = "dsf ds fds  /*sdf sd f*/ dsfsd //dsf sd";
+		i = 9876;
+		if (i < 10823) {
+			// geras komentaras
+			i++;
+			i=List.getMain().getId();
+			/*
+			*/
+		}
+	}
 
 	// pre: list != null, list.length > 0
 	// post: return index of minimum element of array

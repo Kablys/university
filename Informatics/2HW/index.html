@@ -10,36 +10,50 @@
 
 <span class="reserved">public</span> <span class="reserved">class</span> ArrayExamples
 {	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">void</span> main(String[] args)
-	{	<span class="reserved">int</span>[] list = {1, 2, 3, 4, 1, 2, 3};
-		findAndPrintPairs(list, 5);
+	{	<span class="reserved">int</span>[] list = {<span class="numbers">1</span>, <span class="numbers">2</span>, <span class="numbers">3</span>, <span class="numbers">4</span>, <span class="numbers">1</span>, <span class="numbers">2</span>, <span class="numbers">3</span>};
+		findAndPrintPairs(list, <span class="numbers">5</span>);
 		bubblesort(list);
 		showList(list);
 
-		list = <span class="reserved">new</span> <span class="reserved">int</span>[]{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+		list = <span class="reserved">new</span> <span class="reserved">int</span>[]{ <span class="numbers">1</span>, <span class="numbers">2</span>, <span class="numbers">3</span>, <span class="numbers">4</span>, <span class="numbers">5</span>, <span class="numbers">6</span>, <span class="numbers">7</span>, <span class="numbers">8</span>, <span class="numbers">9</span>, <span class="numbers">10</span>, <span class="numbers">11</span>};
 		bubblesort(list);
 		showList(list);
 
-		list = <span class="reserved">new</span> <span class="reserved">int</span>[]{11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2};
+		list = <span class="reserved">new</span> <span class="reserved">int</span>[]{<span class="numbers">11</span>, <span class="numbers">10</span>, <span class="numbers">9</span>, <span class="numbers">8</span>, <span class="numbers">7</span>, <span class="numbers">6</span>, <span class="numbers">5</span>, <span class="numbers">4</span>, <span class="numbers">3</span>, <span class="numbers">2</span>, <span class="numbers">1</span>, <span class="numbers">0</span>, -<span class="numbers">1</span>, -<span class="numbers">2</span>};
 		bubblesort(list);
 		showList(list);
 
-		list = <span class="reserved">new</span> <span class="reserved">int</span>[]{1};
+		list = <span class="reserved">new</span> <span class="reserved">int</span>[]{<span class="numbers">1</span>};
 		bubblesort(list);
 		showList(list);
 	}
 
+	<span class="comment">/**
+	*<span class="author">@author</span> Liutauras
+	*<span class="author">@param</span> int i kintamasis
+	*/</span>
+	<span class="reserved">protected</span> <span class="reserved">int</span> test(<span class="reserved">int</span> i) {
+		greeeting = <span class="text">"dsf ds fds  /*sdf sd f*/ dsfsd //dsf sd"</span>;
+		i = <span class="numbers">9876</span>;
+		<span class="reserved">if</span> (i < <span class="numbers">10823</span>) {
+			<span class="comment">// geras komentaras</span>			i++;
+			i=<span class="classes">List</span>.getMain().getId();
+			<span class="comment">/*
+			*/</span>
+		}
+	}
 
 	<span class="comment">// pre: list != null, list.length > 0</span>	<span class="comment">// post: return index of minimum element of array</span>	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">int</span> findMin(<span class="reserved">int</span>[] list)
-	{	<span class="reserved">assert</span> list != null && list.length > 0 : <span class="text">"failed bla bla bla precondition"</span>;
+	{	<span class="reserved">assert</span> list != null && <span class="classes">list</span>.length > <span class="numbers">0</span> : <span class="text">"failed bla bla bla precondition"</span>;
 
-		<span class="reserved">int</span> indexOfndexMin = 0;
-		<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 1; <span class="reserved">int</span> < list.length; iength++)
-		{	<span class="reserved">if</span>(list[iist] < list[indexOfndexMin])
-			{	indexOfndexMin = in;
+		<span class="reserved">int</span> indexOfMin = <span class="numbers">0</span>;
+		<span class="reserved">for</span>(<span class="reserved">int</span> i = <span class="numbers">1</span>; i < <span class="classes">list</span>.length; i++)
+		{	<span class="reserved">if</span>(list[i] < list[indexOfMin])
+			{	indexOfMin = i;
 			}
 		}
 
-		<span class="reserved">return</span> indexOfndexMin; Return
+		<span class="reserved">return</span> indexOfMin; Return
 	}
 
 	
@@ -50,13 +64,13 @@
 	 *argument
 	 */</span>
 	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">void</span> badResize(<span class="reserved">int</span>[] list, <span class="reserved">int</span> newSize)
-	{	<span class="reserved">assert</span> list != null && newSize >= 0 : <span class="text">"failed precondition"</span>;
+	{	<span class="reserved">assert</span> list != null && newSize >= <span class="numbers">0</span> : <span class="text">"failed precondition"</span>;
 
 		<span class="reserved">int</span>[] temp = <span class="reserved">new</span> <span class="reserved">int</span>[newSize];
-		<span class="reserved">int</span> limit = Math.min(list.length, newSize);
+		<span class="reserved">int</span> limit = <span class="classes">Math</span>.min(<span class="classes">list</span>.length, newSize);
 
-		<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 0; <span class="reserved">int</span> < limit; iimit++)
-		{	temp[iemp] = list[iist];
+		<span class="reserved">for</span>(<span class="reserved">int</span> i = <span class="numbers">0</span>; i < limit; i++)
+		{	temp[i] = list[i];
 		}
 
 		<span class="comment">// uh oh!! Changing pointer, not pointee. This breaks the</span>		<span class="comment">// relationship between the parameter and argument</span>		list = temp;
@@ -69,13 +83,13 @@
 	 *will be copied into the new array
 	 */</span>
 	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">int</span>[] goodResize(<span class="reserved">int</span>[] list, <span class="reserved">int</span> newSize)
-	{	<span class="reserved">assert</span> list != null && newSize >= 0 : <span class="text">"failed precondition"</span>;
+	{	<span class="reserved">assert</span> list != null && newSize >= <span class="numbers">0</span> : <span class="text">"failed precondition"</span>;
 
 		<span class="reserved">int</span>[] result = <span class="reserved">new</span> <span class="reserved">int</span>[newSize];
-		<span class="reserved">int</span> limit = Math.min(list.length, newSize);
+		<span class="reserved">int</span> limit = <span class="classes">Math</span>.min(<span class="classes">list</span>.length, newSize);
 
-		<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 0; <span class="reserved">int</span> < limit; iimit++)
-		{	result[iesult] = list[iist];
+		<span class="reserved">for</span>(<span class="reserved">int</span> i = <span class="numbers">0</span>; i < limit; i++)
+		{	result[i] = list[i];
 		}
 
 		<span class="reserved">return</span> result;
@@ -90,11 +104,11 @@
 	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">void</span> findAndPrintPairs(<span class="reserved">int</span>[] list, <span class="reserved">int</span> target)
 	{	<span class="reserved">assert</span> list != null : <span class="text">"failed precondition"</span>;
 
-		<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 0; <span class="reserved">int</span> < list.length; iength++)
-		{	<span class="reserved">for</span>(<span class="reserved">int</span> jnt = <span class="reserved">int</span> + 1; jnt < list.length; jength++)
-			{	<span class="reserved">if</span>(list[iist] + list[jist] == target)
-				{	System.out.println(<span class="text">"The two elements at indices "</span> + irintln + <span class="text">" and "</span> + jrintln
-						+ <span class="text">" are "</span> + list[iist] + <span class="text">" and "</span> + list[jist] + <span class="text">" add up to "</span> + target);
+		<span class="reserved">for</span>(<span class="reserved">int</span> i = <span class="numbers">0</span>; i < <span class="classes">list</span>.length; i++)
+		{	<span class="reserved">for</span>(<span class="reserved">int</span> j = i + <span class="numbers">1</span>; j < <span class="classes">list</span>.length; j++)
+			{	<span class="reserved">if</span>(list[i] + list[j] == target)
+				{	<span class="classes">System</span>.<span class="classes">out</span>.println(<span class="text">"The two elements at indices "</span> + i + <span class="text">" and "</span> + j
+						+ <span class="text">" are "</span> + list[i] + <span class="text">" and "</span> + list[j] + <span class="text">" add up to "</span> + target);
 				}
 			}
 		}
@@ -110,17 +124,17 @@
 		<span class="reserved">assert</span> list != null : <span class="text">"failed precondition"</span>;
 
 		<span class="reserved">int</span> temp;
-		<span class="reserved">boolean</span> changed = true;
-		<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 0; <span class="reserved">int</span> < list.length && changed; ihanged++)
+		<span class="reserved">boolean</span> changed = false;
+		<span class="reserved">for</span>(<span class="reserved">int</span> i = <span class="numbers">0</span>; i < <span class="classes">list</span>.length && changed; i++)
 		{	changed = false;
-			<span class="reserved">for</span>(<span class="reserved">int</span> jnt = 0; jnt < list.length - iength - 1; jength++)
-			{	<span class="reserved">assert</span> (jssert > 0) && (jssert + 1 < list.length) : <span class="text">"loop counter j "</span> + jength +
+			<span class="reserved">for</span>(<span class="reserved">int</span> j = <span class="numbers">0</span>; j < <span class="classes">list</span>.length - i - <span class="numbers">1</span>; j++)
+			{	<span class="reserved">assert</span> (j > <span class="numbers">0</span>) && (j + <span class="numbers">1</span> < <span class="classes">list</span>.length) : <span class="text">"loop counter j "</span> + j +
 					<span class="text">"is out of bounds."</span>;
-				<span class="reserved">if</span>(list[jist] > list[jist+1])
+				<span class="reserved">if</span>(list[j] > list[j+<span class="numbers">1</span>])
 				{	changed = true;
-					temp = list[jist + 1];
-					list[jist + 1] = list[jist];
-					list[jist] = temp;
+					temp = list[j + <span class="numbers">1</span>];
+					list[j + <span class="numbers">1</span>] = list[j];
+					list[j] = temp;
 				}
 			}
 		}
@@ -130,9 +144,9 @@
 
 
 	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">void</span> showList(<span class="reserved">int</span>[] list)
-	{	<span class="reserved">for</span>(<span class="reserved">int</span> <span class="reserved">int</span> = 0; <span class="reserved">int</span> < list.length; iength++)
-			System.out.print( list[iist] + <span class="text">" "</span> );
-		System.out.println();
+	{	<span class="reserved">for</span>(<span class="reserved">int</span> i = <span class="numbers">0</span>; i < <span class="classes">list</span>.length; i++)
+			<span class="classes">System</span>.<span class="classes">out</span>.print( list[i] + <span class="text">" "</span> );
+		<span class="classes">System</span>.<span class="classes">out</span>.println();
 	}
 
 	<span class="comment">/* 	pre: list != null*/</span>
@@ -141,11 +155,11 @@
 	*/</span>
 	<span class="reserved">public</span> <span class="reserved">static</span> <span class="reserved">boolean</span> isAscending( <span class="reserved">int</span>[] list )
 	{	<span class="reserved">boolean</span> ascending = true;
-		<span class="reserved">int</span> index = 1;
-		<span class="reserved">while</span>( ascending && index < list.length )
-		{	<span class="reserved">assert</span> index >= 0 && index < list.length;
+		<span class="reserved">int</span> index = <span class="numbers">1</span>;
+		<span class="reserved">while</span>( ascending && index < <span class="classes">list</span>.length )
+		{	<span class="reserved">assert</span> index >= <span class="numbers">0</span> && index < <span class="classes">list</span>.length;
 
-			ascending = (list[index - 1] <= list[index]);
+			ascending = (list[index - <span class="numbers">1</span>] <= list[index]);
 			index++;
 		}
 

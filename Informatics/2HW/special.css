@@ -2,3 +2,6 @@ body {font-family: monospace;background-color:black;color: white;}
 .comment {color: green;}
 .text{color: grey;}
 .reserved{color: blue;}
+.numbers{color: purple;}
+.classes{color: yellow;}
+.author{font-style:italic;}

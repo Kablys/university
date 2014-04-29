@@ -1,5 +1,10 @@
+//Dominyko Ablingio 2 programa
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
+const char *strings[] = { "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "default", "do", "double", "else", "enum", "extends", "final", "finally", "float", "for", "goto", "if", "implements", "import", "instanceof", "int", "interface", "long", "native", "new", "package", "private", "protected", "public", "return", "short", "static", "strictfp", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "try", "void", "volatile", "while"};
+
 void beginHtml(FILE *html){
 	fprintf(html, "<!DOCTYPE HTML> \n");
 	fprintf(html, "</html> \n");
@@ -20,7 +25,7 @@ void endHtml(FILE *html){
 
 void markString(FILE *data, FILE *html, char c){
 	fprintf(html, "<span class=\"text\">%c",c);//opening tag
-	while((c = getc(data)) != EOF){
+	while((c = getc(data)) != EOF){//iki failo pabaigos
 		if(c == '\"'){
 			putc(c,html);
 			fprintf(html, "</span>");//closing tag
@@ -30,7 +35,7 @@ void markString(FILE *data, FILE *html, char c){
 	}
 }
 
-void markComment(FILE *data, FILE *html, char c){
+int markComment(FILE *data, FILE *html, char c){
 	int k;
 	k = c;
 	c = getc(data);
@@ -44,6 +49,24 @@ void markComment(FILE *data, FILE *html, char c){
 	else if(c == '*'){//block comment
 		fprintf(html, "<span class=\"comment\">%c%c",k,c);//opening tag
 		while((c = getc(data)) != EOF){
+			if(c == '@'){
+				fprintf(html, "<span class=\"author\">");//opening tag
+				while(!(c == ' ')){
+					if(c == '*'){
+						putc(c,html);
+						c = getc(data);
+						if(c == '/'){
+							putc(c,html);
+							fprintf(html, "</span></span>");//closing tag
+							return 0;	
+						}
+						continue;
+					}
+					putc(c,html);
+					c = getc(data);
+				}
+				fprintf(html, "</span>");//closing tag
+			}
 			if(c == '*'){
 				putc(c,html);
 				c = getc(data);
@@ -61,33 +84,68 @@ void markComment(FILE *data, FILE *html, char c){
 	else{//if only one /
 		fprintf(html, "%c%c",k,c);
 	}
+	return 0;
 }
 
-void markReserved(FILE *data, FILE *html, char c){
-	char interim[13];//longest rerved JAVA word is synchronized(12 characters)
-	int i = 0;
+void markNumber(FILE *data, FILE *html, char c){
+	char *interim = malloc(1 * sizeof (char));
+	int i = 1;
 	interim[0] = c;
 	c = getc(data);
-	while (((c >= 97) && (c <= 122)) || (i > 11)){
+	/*            0            9*/
+	while (((c >= 48) && (c <= 57))){
 		i++;
-		interim[i] = c;
-		interim[i + 1] = '\0';
+		interim = realloc(interim, i * sizeof(char));
+		interim[i - 1] = c;
 		c = getc(data);
 	}
+	interim = realloc(interim, (i + 1) * sizeof(char));
+	interim[i] = '\0';//prideda string gale 
+
+	/*           A            Z                          a            z*/ 
+	if (!(((c >= 65) && (c <= 90)) || (c == '_')|| ((c >= 97) && (c <= 122)))){
+		fprintf(html, "<span class=\"numbers\">%s</span>%c",interim, c);//opening and closing tag
+	}
+	else{ 
+		fprintf(html,"%s%c", interim, c);//opening and closing tag
+	}
+
+	free(interim);
+}
+
+void markReservedClass(FILE *data, FILE *html, char c){
+	char *interim = malloc(1 * sizeof (char));
+	int i = 1;
+	interim[0] = c;
+	c = getc(data);
+	/*            0            9              A            Z                           a            z*/
+	while (((c >= 48) && (c <= 57)) || ((c >= 65) && (c <= 90)) || (c == '_') || ((c >= 97) && (c <= 122)) ){
+		i++;
+		interim = realloc(interim, i * sizeof(char));
+		interim[i - 1] = c;
+		c = getc(data);
+	}
+	interim = realloc(interim, (i + 1) * sizeof(char));
+	interim[i] = '\0';//prideda string gale 
+
 	char notfound = 1;
-	if((c < 48) || ((c > 57) && (c < 65)) || ((c > 90) && (c < 97)) || (c > 122)){// if there is space after string
-		for (i = 0; i < 50; i++){
-			if (strcmp(interim,strings[i]) == 0){
-				fprintf(html, "<span class=\"reserved\">%s</span>",interim);//opening and closing tag
-				notfound = 0;
-				break;	
-			}
+	for (i = 0; i < 50; i++){
+		if (strcmp(interim,strings[i]) == 0){
+			fprintf(html, "<span class=\"reserved\">%s</span>",interim);//opening and closing tag
+			notfound = 0;
+			break;	
 		}
 	}
 	if (notfound){
+		if (c == '.'){
+		fprintf(html, "<span class=\"classes\">%s</span>",interim);//opening and closing tag
+		}
+		else{
 		fprintf(html, "%s",interim);//opening and closing tag
+		}
 	}
 	putc(c,html);
+	free(interim);
 }
 
 int main( int argc, char *argv[] ){
@@ -95,8 +153,7 @@ int main( int argc, char *argv[] ){
 	FILE *data,
 		 *html;
 
-	const char *strings[] = { "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "default", "do", "double", "else", "enum", "extends", "final", "finally", "float", "for", "goto", "if", "implements", "import", "instanceof", "int", "interface", "long", "native", "new", "package", "private", "protected", "public", "return", "short", "static", "strictfp", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "try", "void", "volatile", "while"};
-	if( argc == 3 ){
+		if( argc == 3 ){
 		printf("The argument supplied are %s%s\n", argv[1],argv[2]);
 		data = fopen(argv[1], "r");
 		html = fopen(argv[2], "w");
@@ -126,17 +183,17 @@ int main( int argc, char *argv[] ){
 				markString(data, html, c);
 				continue;
 			}
-
-			if ((c >= 97) && (c <= 122)){//marking reserved words
-				markReserved(data, html, c);		
+			/*        0            9*/
+			if ((c >= 48) && (c <= 57)){//marking numbers
+				markNumber(data, html, c);		
 				continue;
 			}
-			if (c){//marking reserved words
-				markReserved(data, html, c);		
+			/*          A            Z              a            z*/			
+			if ((((c >= 65) && (c <= 90)) || ((c >= 97) && (c <= 122)))){//marking reserved words
+				markReservedClass(data, html, c);		
 				continue;
 			}
 
-			//markComment(c,data);
 			putc(c,html);
 		}
 	}
