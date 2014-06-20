@@ -1,0 +1,1 @@
+mod.c faile pridejau 	return 1; tokiam atvejui kai if bus neivygdytas

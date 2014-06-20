@@ -1,0 +1,25 @@
+mod.h
+pridejau eilute #include <stdlib.h>, nes naudoju malloc ir realloc
+eilute int data[MAX_DATA]; pakeiciau i int *data;
+pridejau eilute *data = malloc(sizeof(int));
+
+istrinau komentara kuris pakartoja jau esama koda:
+//int pop(struct Stack *s);
+
+pridejau nauja funkcija printStack ir ja paaiskinanti komentara
+
+
+mod.c
+funkcijoje push pridejau eilute	s->data = realloc(data,sizeof(data) - sizeof(int));
+
+funkcijoje pop pridejau eilute 	s->data = realloc(s->data,sizeof(s->data) - sizeof(int));
+
+
+pridejau funkcijos printStack aprasyma
+void printStack(struct Stack *s){
+	printf("There are %d elements in Stack\n", s->size);
+	int i = 0;
+	for(i = 0; i < s->size; i++){
+		printf("%d elementas yra %d\n", i, s->data[i]);
+	}
+}

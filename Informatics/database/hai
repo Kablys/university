@@ -1,0 +1,173 @@
+//Dominyko Ablingio 2 programa
+/*REIKALAVIMAI*/
+//Trečios užduoties tikslas - sukurti primityvią duomenų bazę valdymo sistemą (DBVS), kuri privalo turėti pagrindinius elementus:
+//	Visus saugomus duomenis laikyti failinėje sistemoje. Tai yra paleidus iš naujo programą, duomenys niekur nedingsta.
+//	Paleista programa leidžia atlikti pasirinktą funkciją. Kiekvienai funkcijai jei reikia papildomai įvedami parametrai.
+//	Privalo būti standartinės funkcijos:
+//		Elemento įterpimas - duomenų pildymas vienu elementu.
+//		Elemento ištrynimas - vieno ar kelių elementų ištrynimas.
+//		Duomenų importavimas - nurodomas failas iš kurio užkrauti visą aibę duomenų.
+//		Elemento(ų) paieška - ieškomas sąrašas elementų atitinkančių taisikles.
+//		Galimybė nurodyti paieškos rezultatų rūšiavimo kriterijų.
+//		Galimybė ar rezultatai bus išvedami į failą ar į standartinį išvedimo įrenginį (stdout).
+//	Ieškomiems laukams yra sukurti indeksai (priemonės atlikti greitesnę paiešką). Tai gali būti medžiai, maišos(hash) lentelės.
+//Papildomi balai skiriami už:
+//	Apdorojamas duomenų kiekis didesnis, nei išskirta atmintis.
+//	Kreipiniai į funkcijas vykdomi sava kalba. Pvz.: SQL
+//	Paieškos kriterijai gali būti ne tik '='(lygu), bet ir '<', '>', '<=', '>=', 'IN(...)'
+/*UZDUOTIS*/
+//DB saugomi elementai susidės iš atributų: kino pavadinimas, laikas, eilė ir vieta.
+//Paieška turi būti vykdoma pagal: eilę ir/arba vietą
+//Rūšiavimas galimas pagal: eilę ir/arba vietą.
+//Papildomi veiksmai: įterpti naują įrašą galima tik, tai jeigu tokio įrašo dar nėra.
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+typedef struct {//struct for f
+	char *name;
+	int	hour,	//0-23
+		min,	//0-59
+		row,
+		seat;
+} film;
+int checkInput(int lowerLimit,int upperLimit){	//checks if input is number and if it between limits
+	int n = 0;
+	while (1){
+		if((scanf("%d",&n) == 1) && (n >= lowerLimit) && (n <= upperLimit) && (getchar() == '\n')){
+			break;
+		}
+		else{
+			printf("You need to input number between %d and %d:",lowerLimit,upperLimit);
+			while(getchar() != '\n')
+			;
+		}
+	};
+	return n;
+}//chechInput
+
+int file_exist (char *filename)
+{
+  struct stat   buffer;
+  return (stat (filename, &buffer) == 0);
+}
+
+int numLine(FILE *f){
+	fseek(f,0,SEEK_SET);
+	int lines = 0;
+	while (EOF != (fscanf(f,"%*[^\n]"), fscanf(f,"%*c")))
+		++lines;
+	return lines;
+}
+
+void readUsr(film *interim){
+	printf("Filmo pavadinimas:");
+	interim->name = calloc(100,1);
+	scanf("%s", interim->name);
+
+	printf("Filmo pradzios valanda(0-23):");
+	interim->hour = checkInput(0,23);
+
+	printf("Filmo pradzios minute(0-59):");
+	interim->min = checkInput(0,59);
+
+	printf("Eile(1-32):");
+	interim->row = checkInput(1,32);
+
+	printf("Vieta(1-32):");
+	interim->seat = checkInput(1,32);
+}
+
+void readFile(FILE *f, film *cinema){
+	cinema->name = calloc(1,6);
+	int n = (fscanf(f, "%s %d %d %d %d",
+			cinema->name, &cinema->hour, &cinema->min, &cinema->row, &cinema->seat));
+	printf("%d\n",n);
+}
+void Push(FILE *f, film *interim){
+	fprintf(f,"\n%s ", interim->name);
+	fprintf(f,"%d ", interim->hour);
+	fprintf(f,"%d ", interim->min);
+	fprintf(f,"%d ", interim->row);
+	fprintf(f,"%d ", interim->seat);
+}
+
+void Print(film *interim){
+	printf("%s ", interim->name);
+	printf("%d ", interim->hour);
+	printf("%d ", interim->min);
+	printf("%d ", interim->row);
+	printf("%d ", interim->seat);
+}
+int main( int argc, char *argv[]){
+	//film catalog[100];
+	FILE *f;
+	char action;
+	if( argc == 2 ){
+		printf("The argument supplied is  %s\n", argv[1]);
+		action = argv[1][0];
+	}
+	else if( argc > 2 ){
+		printf("Too many arguments supplied, expected two.\n");
+		return 1;
+	} else{
+		printf("Formatas: main <action>.\n");
+		printf("a = to add element\n");
+		return 1;
+	}
+	switch (action){
+		case 'a':
+			f = fopen ("database.txt","a");
+			film interim;
+			readUsr(&interim);
+			//Print(interim);
+			//fseek(f,0,SEEK_END);
+			Push(f, &interim);
+			free(interim.name);
+			fclose(f);
+			break;
+
+		case 'l':
+			f = fopen ("database.txt","r");
+
+			int lines = numLine(f);
+
+			film *cinema = malloc(lines*sizeof(film));
+			rewind(f);
+			for(int i = 0; i < lines; i++){
+				readFile(f, cinema);
+				Print(cinema);
+			}
+			fclose(f);
+			break;
+
+		case 'i':
+			f = fopen ("database.txt","r");
+			FILE *t;
+			printf("ivesk faila kuri noretum skaityti: ");
+			char *name;
+			scanf("%s", name);
+			t = fopen(name, "r");
+			if (t == NULL){
+				printf("failas nerastas");
+			}
+			int lines = numLine(f);
+
+			film *cinema = malloc(lines*sizeof(film));
+			rewind(f);
+			for(int i = 0; i < lines; i++){
+				readFile(f, cinema);y
+				Print(cinema);
+			}
+			fclose(f);
+			break;
+		default:
+			printf("netinkamas action %d", action);
+			printf("Formatas: main <action>.\n");
+			printf("a = to add element f = list element i = import elements\n");
+			break;
+	}
+
+	return 0;
+}
