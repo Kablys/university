@@ -1,0 +1,17 @@
+.*
+!/.gitignore
+#NASM and stuff
+*.lst
+*.o
+*.swp
+*.chm
+*.zip
+
+#From Tasm
+*.map
+*.td
+*.bat
+*.exe
+
+#
+.out

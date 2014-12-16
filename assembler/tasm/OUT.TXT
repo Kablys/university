@@ -1,0 +1,54 @@
+Turbo Assembler  Version 3.1  Copyright (c) 1988, 1992 Borland International
+
+Assembling file:   WOLF128.ASM
+**Error** WOLF128.ASM(10) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(11) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(12) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(13) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(14) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(15) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(16) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(17) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(18) Illegal instruction for currently selected processor(s)
+**Error** WOLF128.ASM(19) Code or data emission to undeclared segment
+*Warning* WOLF128.ASM(22) Argument needs type override
+**Error** WOLF128.ASM(22) Illegal immediate
+*Warning* WOLF128.ASM(24) [Constant] assumed to mean immediate constant
+**Error** WOLF128.ASM(24) Code or data emission to undeclared segment
+*Warning* WOLF128.ASM(25) [Constant] assumed to mean immediate constant
+**Error** WOLF128.ASM(25) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(28) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(29) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(31) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(32) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(33) Illegal instruction for currently selected processor(s)
+**Error** WOLF128.ASM(34) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(35) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(36) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(37) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(38) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(40) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(41) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(42) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(43) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(44) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(45) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(47) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(48) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(49) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(50) Illegal immediate
+**Error** WOLF128.ASM(52) Illegal immediate
+**Error** WOLF128.ASM(53) Illegal immediate
+**Error** WOLF128.ASM(54) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(55) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(57) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(58) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(59) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(60) Code or data emission to undeclared segment
+**Error** WOLF128.ASM(61) Code or data emission to undeclared segment
+**Fatal** WOLF128.ASM(62) Unexpected end of file encountered
+Error messages:    43
+Warning messages:  3
+Passes:            1
+Remaining memory:  467k
+
