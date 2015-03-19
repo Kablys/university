@@ -240,24 +240,7 @@ _makeFile:
 		mov eax, 6 		;sys_close
 		mov ebx, [fd_in]
 jmp done
-;;;;;;;;;;;;;;;;;;;;;;;;;
-;; create first file for split
-;		mov eax, 8 		;sys_create
-;		mov ebx, partName 	;name of the file
-;		mov ecx, 0666q 	;read, write, all
-;		int 80h
-;		mov [fd_in], eax
-;
-;; write into new file
-;		mov eax, 4
-;		mov ebx, [fd_in]
-;		mov ecx, buff
-;		mov edx, [size]
-;		int 80h
-;
-;; close the file
-;		mov eax, 6 		;sys_close
-;		mov ebx, [fd_in]
+		mov ebx, [fd_in]
 
 done:
 ; close the Main file
