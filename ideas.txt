@@ -1,0 +1,11 @@
+declare - suteiki varda
+	sqrt(int x);
+define - suteiki prasme 
+	sqrt(int x){return x*x};
+initialize - suteiki reiksme (pvz kintamjam) jo sukurimo metu
+	int x = 1;
+explicitly - Fully and clearly expressed; leaving nothing implied
+implicitly - Implied or understood though not directly expressed
+implicit call - kai kviecia kompas
+explicit call - kai kvieti pats (konkreciai nurodai ko nori)
+
