@@ -1,0 +1,5 @@
+mock
+	naudoti kai nergali lengvai patikrinti metodo atiliktu pakeitimu, bet nors 		patikrinam kad buvo panaudoti
+	
+	kai sunku izoliuoti pakeitima
+expect(adminregister).to receive(:check).return(...)

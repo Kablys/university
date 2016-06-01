@@ -1,0 +1,319 @@
+
+PROGRAM
+  FUNCTION
+    TYPE INT
+    IDENTIFIER factorial
+    PARAMETER
+      TYPE INT
+        IDENTIFIER d
+      TYPE INT
+        IDENTIFIER h
+      TYPE INT
+        IDENTIFIER i
+      TYPE INT
+        IDENTIFIER f
+    BLOCK
+      ASSIG
+        TYPE FLOAT
+          IDENTIFIER c
+        EXPRESSION
+          FLOATNUMBER 10.00
+      ASSIG
+        TYPE STRING
+          IDENTIFIER a
+        EXPRESSION
+          CHARSET some
+      ASSIG
+        TYPE INT
+          IDENTIFIER c
+        EXPRESSION
+          MULTIPLY
+            NUMBER 100
+            MULTIPLY
+              NUMBER 10
+              NUMBER 5
+              EXPRESSION
+                PLUS
+                  DIVISION
+                    NUMBER 10
+                    NUMBER 5
+      ASSIG
+        TYPE INT
+          IDENTIFIER a
+        FUNCAL
+          IDENTIFIER f
+          EXPRESSION
+            PLUS
+              IDENTIFIER a
+              FUNCAL
+                IDENTIFIER b
+                EXPRESSION
+          FUNCAL
+            IDENTIFIER b
+            EXPRESSION
+      SYSTEMOUT
+        EXPRESSION
+          CHARSET mes esame cia
+      ASSIG
+        TYPE INT
+          IDENTIFIER a
+        EXPRESSION
+          CHARSET Enter a number to calculate it's factorial\n
+      ASSIG
+        TYPE INT
+          IDENTIFIER as
+        EXPRESSION
+          PLUS
+            IDENTIFIER a
+            FUNCAL
+              IDENTIFIER function
+              EXPRESSION
+                PLUS
+                  IDENTIFIER b
+                  FUNCAL
+                    IDENTIFIER c
+                    EXPRESSION
+      ASSIG
+        TYPE INT
+          IDENTIFIER some
+        EXPRESSION
+          PLUS
+            IDENTIFIER a
+            FUNCAL
+              IDENTIFIER function
+              EXPRESSION
+                PLUS
+                  IDENTIFIER a
+                  IDENTIFIER z
+              FUNCAL
+                IDENTIFIER function2
+                EXPRESSION
+      ASSIG
+        TYPE INT
+          IDENTIFIER a
+        EXPRESSION
+          PLUS
+            IDENTIFIER b
+            FUNCAL
+              IDENTIFIER function
+              EXPRESSION
+                PLUS
+                  IDENTIFIER c
+                  IDENTIFIER d
+              EXPRESSION
+                MULTIPLY
+                  IDENTIFIER a
+                  FUNCAL
+                    IDENTIFIER e
+                    EXPRESSION
+      ASSIG
+        TYPE INT
+          IDENTIFIER a
+        EXPRESSION
+          DIVISION
+            NUMBER 100
+            MULTIPLY
+              NUMBER 10
+              NUMBER 5
+              EXPRESSION
+                PLUS
+                  NUMBER 2
+      ASSIG
+        TYPE INT
+          IDENTIFIER b
+        EXPRESSION
+          MULTIPLY
+            IDENTIFIER a
+            IDENTIFIER b
+            EXPRESSION
+              PLUS
+                IDENTIFIER c
+                EXPRESSION
+                  PLUS
+                    MULTIPLY
+                      IDENTIFIER d
+                      IDENTIFIER f
+      ASSIG
+        TYPE INT
+          IDENTIFIER a
+        EXPRESSION
+          MULTIPLY
+            IDENTIFIER b
+            FUNCAL
+              IDENTIFIER f
+              EXPRESSION
+                IDENTIFIER b
+              FUNCAL
+                IDENTIFIER a
+                EXPRESSION
+                  IDENTIFIER a
+                EXPRESSION
+                  IDENTIFIER h
+          MULTIPLY
+            IDENTIFIER d
+      SYSTEMIN
+        IDENTIFIER number
+      RETURN
+        EXPRESSION
+          IDENTIFIER a
+      WHILE
+        MORE
+          IDENTIFIER a
+          IDENTIFIER b
+        BLOCK
+          TYPE INT
+            IDENTIFIER a
+      FUNCAL
+        IDENTIFIER xx
+        EXPRESSION
+          PLUS
+            NUMBER 1
+            NUMBER 2
+      ASSIG
+        IDENTIFIER a
+        EXPRESSION
+          CHARSET a
+      IF
+        LESS
+          IDENTIFIER a
+          IDENTIFIER b
+        BLOCK
+          TYPE INT
+            IDENTIFIER ifEntered
+        ELSE
+          BLOCK
+            TYPE INT
+              IDENTIFIER elseBlock
+      IF
+        LESS
+          IDENTIFIER c
+          IDENTIFIER s
+        BLOCK
+      TYPE INT
+        IDENTIFIER c
+      ASSIG
+        TYPE INT
+          IDENTIFIER result
+        EXPRESSION
+          NUMBER 2
+      FOR
+        ASSIG
+          IDENTIFIER c
+          TO
+            IDENTIFIER x
+            IDENTIFIER n
+        BLOCK
+          ASSIG
+            IDENTIFIER result
+            EXPRESSION
+              MULTIPLY
+                IDENTIFIER result
+                IDENTIFIER c
+                EXPRESSION
+                  PLUS
+                    NUMBER 1
+      RETURN
+        EXPRESSION
+          IDENTIFIER result
+  FUNCTION
+    TYPE INT
+    IDENTIFIER somethin
+    PARAMETER
+    BLOCK
+      TYPE INT
+        IDENTIFIER c
+  MAIN
+    PARAMETER
+    BLOCK
+      ASSIG
+        TYPE INT
+          IDENTIFIER vienas
+        EXPRESSION
+          PLUS
+            NUMBER 2
+            NUMBER 3
+            EXPRESSION
+      ASSIG
+        TYPE INT
+          IDENTIFIER test
+        EXPRESSION
+          IDENTIFIER a
+      SYSTEMOUT
+        EXPRESSION
+          PLUS
+            IDENTIFIER a
+            CHARSET src=""
+      ASSIG
+        TYPE INT
+          IDENTIFIER a
+        EXPRESSION
+          CHARSET asdasda
+      ASSIG
+        TYPE INT
+          IDENTIFIER name
+        LESS
+          IDENTIFIER a
+          IDENTIFIER b
+          MULTIPLY
+            EXPRESSION
+              PLUS
+                IDENTIFIER c
+                IDENTIFIER d
+      ASSIG
+        TYPE INT
+          IDENTIFIER h
+        EXPRESSION
+          PLUS
+            IDENTIFIER b
+            IDENTIFIER a
+            LESS
+              PLUS
+                IDENTIFIER C
+                IDENTIFIER d
+      ASSIG
+        TYPE INT
+          IDENTIFIER a
+        EXPRESSION
+          MULTIPLY
+            IDENTIFIER b
+            IDENTIFIER c
+            EXPRESSION
+              PLUS
+                IDENTIFIER a
+      ASSIG
+        TYPE INT
+          IDENTIFIER some
+        EXPRESSION
+          PLUS
+            IDENTIFIER a
+      ASSIG
+        TYPE INT
+          IDENTIFIER number
+        EXPRESSION
+          PLUS
+            NUMBER 1
+            NUMBER 2
+            MULTIPLY
+              NUMBER 4
+      SYSTEMOUT
+        EXPRESSION
+          CHARSET Enter a number to calculate it's factorial\n
+      SYSTEMOUT
+        EXPRESSION
+          PLUS
+            IDENTIFIER a
+            IDENTIFIER b
+      FOR
+        ASSIG
+          IDENTIFIER c
+          TO
+            IDENTIFIER a
+            IDENTIFIER b
+        BLOCK
+          TYPE INT
+            IDENTIFIER forloop
+      SYSTEMIN
+        IDENTIFIER number
+      RETURN
+        EXPRESSION
+          IDENTIFIER a

@@ -1,0 +1,10 @@
+Routing - kas tai kaip tai reguliuoti
+actions -  -------||-----------
+view templates ?
+
+paklausk del 
+	welcome#index
+	welcome/index
+	kodel is keliu eiluciu
+
+ar bin/rake routes ar jei prefix tuscias tai reiskai kad pajimti virs jo esnti
