@@ -1,0 +1,9 @@
+[submodule "kurs/docClus/document_cluster"]
+	path = kurs/docClus/document_cluster
+	url = https://github.com/brandomr/document_cluster
+[submodule "kurs/docClus/course_work_template_vu_mif_cs1"]
+	path = kurs/docClus/course_work_template_vu_mif_cs1
+	url = https://github.com/LIKS/course_work_template_vu_mif_cs1
+[submodule "kurs/docClus/course_work_template_vu_mif_se"]
+	path = kurs/docClus/course_work_template_vu_mif_se
+	url = https://github.com/LIKS/course_work_template_vu_mif_se
