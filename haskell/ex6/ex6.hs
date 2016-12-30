@@ -1,6 +1,6 @@
 module Ex6 where
 
-import Queue
+--import Queue
 import qualified Data.Set as S
 
 -- 1 Done
@@ -17,7 +17,7 @@ gElem (Gnode l) a = True `elem` map (`gElem` a) l
 gMap :: GTree a -> (a -> b) -> GTree b
 gMap (Leaf b) f = Leaf (f b)
 gMap (Gnode l) f = Gnode (map (`gMap` f) l)
--- 2 
+-- 2
 data Result a = OK a | Error String deriving (Show)
 composeResult :: (a -> Result b) -> (b -> Result c) -> (a -> Result c)
 composeResult fb fc = getOut.fb
